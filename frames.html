@@ -1,0 +1,120 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+<head>
+<meta charset="utf-8">
+<title>Video Authoring Tool</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Videoauth</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="frame.html" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Frame Exractor
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="download.html">Downloader</a>
+            <a class="dropdown-item" href="audio.html">Converter</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+<div class="container my-5">
+  <h4>Extract Frames</h4>
+  <input type="file" class=" btn" accept="video/*" /><br>
+  <div class="container">
+    <video controls="" class="gwd-video-ah8n rounded shadow" ></video>
+  </div>
+  <br>
+  <button type="submit" onClick="reloadFrame()"  class = " btn btn-info"value="Load Frame" >Load Frame</button><br/>
+  <br><br>
+  <canvas id="prevImgCanvas">Your browser does not support the HTML5 canvas tag.</canvas>
+  
+    
+    <div id="message"></div>
+  </div> 
+</div>
+  <script>
+    (function localFileVideoPlayer() {
+      'use strict'
+      var URL = window.URL || window.webkitURL
+      var displayMessage = function(message, isError) {
+        var element = document.querySelector('#message')
+        element.innerHTML = message
+        element.className = isError ? 'error' : 'info'
+      }
+      var playSelectedFile = function(event) {
+        var file = this.files[0]
+        var type = file.type
+        var videoNode = document.querySelector('video')
+        var canPlay = videoNode.canPlayType(type)
+        if (canPlay === '') canPlay = 'no'
+        var message = ''
+        var isError = canPlay === 'no'
+        displayMessage(message, isError)
+
+        if (isError) {
+          return
+        }
+
+        var fileURL = URL.createObjectURL(file)
+        videoNode.src = fileURL
+      }
+      var inputNode = document.querySelector('input')
+      inputNode.addEventListener('change', playSelectedFile, false)
+    })()
+  </script>
+<script type="text/JavaScript">
+var video = document.createElement("video");
+
+var canvas = document.getElementById("prevImgCanvas");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+video.addEventListener('loadeddata', function() {
+  reloadRandomFrame();
+}, false);
+
+video.addEventListener('seeked', function() {
+  var context = canvas.getContext('2d');
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+}, false);
+
+var playSelectedFile = function(event) {
+  var file = this.files[0];
+  var fileURL = URL.createObjectURL(file);
+  video.src = fileURL;
+}
+
+var input = document.querySelector('input');
+input.addEventListener('change', playSelectedFile, false);
+
+function reloadFrame() {
+  if (!isNaN(video.duration)) {
+    var rand = Math.round(Math.random() * video.duration * 1000) + 2;
+    video.currentTime = rand / 1000;
+  }
+}
+
+</script>
+
+
+</body> 
+</html>

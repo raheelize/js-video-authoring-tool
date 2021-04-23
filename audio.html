@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Video Authoring Tool</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  
+  <style>
+    .converter {
+      width: 100%;
+      height: 2000px;
+      overflow:hidden;
+    }
+
+    iframe {
+      position: relative;
+      width: 100%;
+      height: 1450px;
+      top: -380px;
+    }
+
+  </style>
+</head>
+
+
+
+
+<body class="">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Videoauth</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="audio.html" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Converter
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="download.html">Downloader</a>
+            <a class="dropdown-item" href="frames.html">Frame Extractor</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h4>Extract Audio</h4>
+    <div class="converter">
+      <iframe id="iframe" src="https://js-audio-converter.com/" style="display:hidden;" scrolling="no"
+        frameborder='no'></iframe>
+    </div>
+  </div>
+  <script>
+    var iframe = document.getElementById("iframe");
+    var div = document.getElementById("PlaceToPutTable");
+    div.innerHTML = iframe.contentWindow.document.getElementById("bcontent").innerHTML;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Authoring Tool</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="downloader.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Videoauth</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="download.html" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Downloader
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="frames.html">Frame Exractor</a>
+            <a class="dropdown-item" href="audio.html">Converter</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+
+  </div>
+  <div class=" my-5">
+    <div class="container">
+      <h4>Video Downloader</h4>
+
+      <label for="fname">Enter Video Link:</label><br>
+      <input type="text" id="link" class="form-control" name="link" value=""><br>
+      <button type="submit" class=" btn btn-info" name="submit" onclick="download()">Download Now</button>
+
+      <p id="valid" style="color: red;" class="p-2"></p>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
